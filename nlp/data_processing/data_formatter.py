@@ -9,8 +9,8 @@ from io import open
 
 class DataFormatter:
     def __init__(self, data_dir):
-        self.convs_fn = os.path.join(data_dir, 'movie_conversations.txt')
-        self.lines_fn = os.path.join(data_dir, 'movie_lines.txt')
+        self.convs_fn = os.path.join(data_dir, "movie_conversations.txt")
+        self.lines_fn = os.path.join(data_dir, "movie_lines.txt")
         self.out_fn = os.path.join(data_dir, "formatted_movie_lines.txt")
         self.delimiter = str(codecs.decode('\t', "unicode_escape"))
         self.lines_fields = ["line_id", "char_id", "movie_id", "char", "text"]
@@ -28,7 +28,7 @@ class DataFormatter:
                 line_obj = {}
                 for i, field in enumerate(self.lines_fields):
                     line_obj[field] = values[i]
-                self.lines[line_obj['line_id']] = line_obj
+                self.lines[line_obj["line_id"]] = line_obj
 
     # Groups fields of lines from `load_lines` into conversations based on *movie_conversations.txt*
     def load_convs(self):
@@ -71,19 +71,19 @@ class DataFormatter:
                 writer.writerow(pair)
 
     def print_lines(self, n=10):
-        print('\nSample from formatted file:\n')
+        print("\nSample from formatted file:\n")
         try:
             with open(self.out_fn, 'rb') as f:
                 lines = f.readlines()
             for line in lines[:n]:
                 print(line)
         except FileNotFoundError:
-            print('Write formatted file first !!!')
+            print("Write formatted file first !!!")
 
 
 def main():
-    parser = argparse.ArgumentParser(description='data loader')
-    parser.add_argument('--data-dir', type=str, default='/home/filippo/datasets/cornell_movie_data/')
+    parser = argparse.ArgumentParser(description="data loader")
+    parser.add_argument("--data-dir", type=str, default="/home/filippo/datasets/cornell_movie_data/")
     args = parser.parse_args()
 
     data_formatter = DataFormatter(args.data_dir)
@@ -93,5 +93,5 @@ def main():
     data_formatter.print_lines()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
