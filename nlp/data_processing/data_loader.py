@@ -6,9 +6,9 @@ from nlp.data_processing.data_processor import DataProcessor
 
 
 class DataLoader:
-    def __init__(self, voc, pairs):
-        self.max_len = 10
-        self.split = 0.7
+    def __init__(self, voc, pairs, max_len=10, split=0.7):
+        self.max_len = max_len
+        self.split = split
         self.random_seed = 123456
         self.voc = voc
         self.pairs = pairs
@@ -64,7 +64,9 @@ def main():
     train, val, test = data_loader.get_split()
     data_iter = data_loader.data_iter(pairs=train)
     for data in data_iter:
+        print()
         print(data['inputs'])
+        print(data['labels'])
 
 
 if __name__ == '__main__':

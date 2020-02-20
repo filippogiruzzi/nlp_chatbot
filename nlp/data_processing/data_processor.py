@@ -56,10 +56,10 @@ class Voc:
 
 
 class DataProcessor:
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, max_len=10):
         self.corpus_name = "cornell_movie_dialogs"
         self.data_fn = os.path.join(data_dir, "formatted_movie_lines.txt")
-        self.max_len = 10
+        self.max_len = max_len
         self.min_count = 3
 
     # Filter pairs using filterPair condition
@@ -85,7 +85,7 @@ class DataProcessor:
 
     # Using the functions defined above, return a populated voc object and pairs list
     def load_prepare_data(self):
-        print("Start preparing training data ...")
+        print("\nStart preparing training data ...")
         voc, pairs = self.read_vocs()
         print("Read {!s} sentence pairs".format(len(pairs)))
         pairs = self.filter_pairs(pairs)
