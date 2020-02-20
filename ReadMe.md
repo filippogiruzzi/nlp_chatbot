@@ -42,16 +42,36 @@ a realistic Chatbot based on Natural Language Processing (NLP).
 ## 3. Project structure
 
 The project `nlp_chatbot/` has the following structure:
-* `nlp/data_processing/`: data processing, 
-recording & visualization
+* `nlp/data_processing/`: data processing, recording & visualization
 * `nlp/training/`: data input pipeline, model 
 & training / evaluation / prediction operations
 * `nlp/inference/`: exporting trained model & inference
 
 ## 4. Dataset
 
+Please download the [ Cornell Movie-Dialogs Corpus dataset ](https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html), 
+and extract all files to `/path/to/cornell_movie_data/`. The challenge description can be found on 
+[ Kaggle ](https://www.kaggle.com/rajathmc/cornell-moviedialog-corpus).
+
+The dataset consists of 220 579 conversational exchanges between 10 292 pairs of movie characters and 
+involves 9 035 characters from 617 movies, and is thus well suited for realistic chatbot applications.
+
 ## 5. Project usage
+
+```
+$ cd /path/to/project/nlp_chatbot/nlp/
+```
+
+### 5.1 Reformat the raw data .txt files
+
+```
+$ python3 data_processing/data_formatter.py --data-dir /path/to/cornell_movie_data/
+```
 
 ## 6. Todo
 
 ## 7. Resources
+
+This project was widely inspired by:
+* _Pytorch chatbot tutorial_, [ Pytorch website ](https://pytorch.org/tutorials/beginner/chatbot_tutorial.html)
+* _Kaggle challenge_, [ Kaggle ](https://www.kaggle.com/rajathmc/cornell-moviedialog-corpus)
