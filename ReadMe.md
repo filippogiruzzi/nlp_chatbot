@@ -74,4 +74,6 @@ $ python3 data_processing/data_formatter.py --data-dir /path/to/cornell_movie_da
 
 This project was widely inspired by:
 * _Pytorch chatbot tutorial_, [ Pytorch website ](https://pytorch.org/tutorials/beginner/chatbot_tutorial.html)
+* _TensorFlow NLP tutorial_, [ TensorFlow website ](https://www.tensorflow.org/tutorials/text/text_generation)
+* _Keras NLP tutorial_, [ TDS ](https://towardsdatascience.com/how-to-implement-seq2seq-lstm-model-in-keras-shortcutnlp-6f355f3e5639)
 * _Kaggle challenge_, [ Kaggle ](https://www.kaggle.com/rajathmc/cornell-moviedialog-corpus)
