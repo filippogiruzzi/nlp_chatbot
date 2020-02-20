@@ -65,9 +65,12 @@ class DataProcessor:
     # Filter pairs using filterPair condition
     def filter_pairs(self, pairs):
         # Returns True iff both sentences in a pair 'p' are under the MAX_LENGTH threshold
+        max_len = self.max_len
+
         def filter_pair(pair):
             # Input sequences need to preserve the last word for EOS token
-            return len(pair[0].split(' ')) < self.max_len and len(pair[1].split(' ')) < self.max_len
+            return len(pair[0].split(' ')) < max_len and len(pair[1].split(' ')) < max_len
+
         return [pair for pair in pairs if filter_pair(pair)]
 
     # Read query/response pairs and return a voc object
