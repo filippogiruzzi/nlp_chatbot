@@ -118,6 +118,7 @@ def main():
 
             input_string = data[0]['input/sentence']
             input_encoded = data[0]['input/encoded']
+            input_target = data[0]['input/input_target']
             input_len = data[0]['input/length']
             label_string = data[1]['label/sentence']
             label_encoded = data[1]['label/encoded']
@@ -126,7 +127,7 @@ def main():
             print('\nBatch nb {}'.format(batch_nb))
             for i in range(len(input_string)):
                 print("\nInputs:")
-                print(input_len, input_string, input_encoded)
+                print(input_len, input_string, input_encoded, input_target)
                 print("\nLabels:")
                 print(label_len, label_string, label_encoded)
 

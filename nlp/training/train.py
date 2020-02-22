@@ -129,6 +129,17 @@ def main():
                                       shuffle=False,
                                       fake_input=args.fake_input)
 
+        predictions = estimator.predict(input_fn=test_input_fn)
+        for n, pred in enumerate(predictions):
+            input_sentence = pred['input_sentence']
+            input_target = pred['input_target']
+            pred = pred['answer']
+
+            print("\nInputs:")
+            print(np.int64(input_sentence), np.int64(input_target))
+            print("Prediction:")
+            print(np.argmax(pred, axis=-1))
+
 
 if __name__ == '__main__':
     main()
