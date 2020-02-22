@@ -66,12 +66,19 @@ def data_input_fn(tfrecords,
         label = next_batch[1]['label/encoded']
 
         # Pre-processing
-        with tf.name_scope('preprocessing'):
-            input_sentence = tf.one_hot(input_sentence, depth=voc_size, axis=-1)
+        with tf.name_scope('preprocess_inputs'):
+            input_sentence = tf.cast(input_sentence, dtype=tf.float32)
+            input_target = tf.identity(label)
+            input_target = tf.cast(input_target, dtype=tf.float32)
+            eos_token = tf.constant(1, dtype=tf.float32, shape=input_target.get_shape().as_list()[:-1] + [1])
+            input_target = tf.concat([eos_token, input_target], axis=-1)
+        with tf.name_scope('preprocess_labels'):
             label = tf.one_hot(label, depth=voc_size, axis=-1)
+            label = tf.cast(label, dtype=tf.float32)
 
         features, labels = {}, {}
-        features['input'] = input_sentence
+        features['input_sentence'] = input_sentence
+        features['input_target'] = input_target
         labels['label'] = label
         return features, labels
     return _input_fn
