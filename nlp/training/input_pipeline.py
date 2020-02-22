@@ -31,8 +31,8 @@ def get_dataset(tfrecords,
                     input_target = tf.identity(val)
                     eos_token = tf.constant(1, dtype=tf.int64, shape=input_target.get_shape().as_list()[:-1] + [1])
                     input_target = tf.concat([eos_token, input_target], axis=-1)
+                    input_target = tf.slice(input_target, [0], [max_len])
                     features['input/input_target'] = input_target
-                    val = tf.concat([eos_token, val], axis=-1)
                 labels[key] = val
         return features, labels
 
@@ -78,13 +78,14 @@ def data_input_fn(tfrecords,
             input_target = tf.cast(input_target, dtype=tf.float32)
 
         with tf.name_scope('preprocess_labels'):
-            label = tf.one_hot(label, depth=voc_size, axis=-1)
-            label = tf.cast(label, dtype=tf.float32)
+            one_hot_label = tf.one_hot(label, depth=voc_size, axis=-1)
+            one_hot_label = tf.cast(one_hot_label, dtype=tf.float32)
 
         features, labels = {}, {}
         features['input_sentence'] = input_sentence
         features['input_target'] = input_target
         labels['label'] = label
+        labels['one_hot_label'] = one_hot_label
         return features, labels
     return _input_fn
 

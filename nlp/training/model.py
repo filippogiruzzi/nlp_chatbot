@@ -25,7 +25,7 @@ class Seq2Seq(Model):
                                        name='embedding')
         self.dec_embedding = Embedding(input_dim=self.voc_size,
                                        output_dim=self.emb_dim,
-                                       input_length=self.max_len + 1,
+                                       input_length=self.max_len,
                                        name='embedding')
         self.encoder = LSTM(self.enc_dim, return_state=True, name='encoder_rnn')
         self.decoder = LSTM(self.dec_dim, return_state=True, return_sequences=True, name='decoder_rnn')

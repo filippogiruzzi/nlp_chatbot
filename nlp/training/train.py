@@ -61,7 +61,7 @@ def main():
 
     train_config = tf.estimator.RunConfig(save_summary_steps=10,
                                           save_checkpoints_steps=500,
-                                          keep_checkpoint_max=20,
+                                          keep_checkpoint_max=10,
                                           log_step_count_steps=10)
 
     ws = None
