@@ -27,6 +27,12 @@ def get_dataset(tfrecords,
             if 'input' in key:
                 features[key] = val
             elif 'label' in key:
+                if 'encoded' in key:
+                    input_target = tf.identity(val)
+                    eos_token = tf.constant(1, dtype=tf.int64, shape=input_target.get_shape().as_list()[:-1] + [1])
+                    input_target = tf.concat([eos_token, input_target], axis=-1)
+                    features['input/input_target'] = input_target
+                    val = tf.concat([eos_token, val], axis=-1)
                 labels[key] = val
         return features, labels
 
@@ -63,15 +69,14 @@ def data_input_fn(tfrecords,
         next_batch = it.get_next()
 
         input_sentence = next_batch[0]['input/encoded']
+        input_target = next_batch[0]['input/input_target']
         label = next_batch[1]['label/encoded']
 
         # Pre-processing
         with tf.name_scope('preprocess_inputs'):
             input_sentence = tf.cast(input_sentence, dtype=tf.float32)
-            input_target = tf.identity(label)
             input_target = tf.cast(input_target, dtype=tf.float32)
-            eos_token = tf.constant(1, dtype=tf.float32, shape=input_target.get_shape().as_list()[:-1] + [1])
-            input_target = tf.concat([eos_token, input_target], axis=-1)
+
         with tf.name_scope('preprocess_labels'):
             label = tf.one_hot(label, depth=voc_size, axis=-1)
             label = tf.cast(label, dtype=tf.float32)

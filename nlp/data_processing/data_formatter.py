@@ -83,7 +83,7 @@ class DataFormatter:
 
 def main():
     parser = argparse.ArgumentParser(description="data loader")
-    parser.add_argument("--data-dir", type=str, default="/home/filippo/datasets/cornell_movie_data/")
+    parser.add_argument("--data-dir", "-d", type=str, default="/home/filippo/datasets/cornell_movie_data/")
     args = parser.parse_args()
 
     data_formatter = DataFormatter(args.data_dir)

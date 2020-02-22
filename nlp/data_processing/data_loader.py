@@ -49,7 +49,7 @@ class DataLoader:
 
 def main():
     parser = argparse.ArgumentParser(description='data iterator to loop through data')
-    parser.add_argument('--data-dir', type=str, default='/home/filippo/datasets/cornell_movie_data/')
+    parser.add_argument('--data-dir', '-d', type=str, default='/home/filippo/datasets/cornell_movie_data/')
     args = parser.parse_args()
 
     data_processor = DataProcessor(args.data_dir)
