@@ -68,12 +68,33 @@ $ cd /path/to/project/nlp_chatbot/nlp/
 $ python3 data_processing/data_formatter.py --data-dir /path/to/cornell_movie_data/
 ```
 
+### 5.2 Train the NLP Seq2Seq model
+
+```
+$ python3 training/train.py --data-dir /path/to/cornell_movie_data/
+```
+
+### 5.3 Visualize predictions with trained model
+
+```
+$ python3 training/train.py --data-dir /path/to/cornell_movie_data/tfrecords/
+                            --mode predict
+                            --model-dir /path/to/trained/model/dir/
+                            --ckpt /path/to/trained/model/dir/
+```
+
 ## 6. Todo
+
+* [ ] Full training on Colab
+* [ ] Debug training accuracy
+* [ ] Inference model & script
+* [ ] Chatbot interface
 
 ## 7. Resources
 
 This project was widely inspired by:
 * _Pytorch chatbot tutorial_, [ Pytorch website ](https://pytorch.org/tutorials/beginner/chatbot_tutorial.html)
+* _Pytorch NLP tutorial_, [ Pytorch website ](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html)
 * _TensorFlow NLP tutorial_, [ TensorFlow website ](https://www.tensorflow.org/tutorials/text/text_generation)
 * _Keras NLP tutorial_, [ TDS ](https://towardsdatascience.com/how-to-implement-seq2seq-lstm-model-in-keras-shortcutnlp-6f355f3e5639)
 * _Kaggle challenge_, [ Kaggle ](https://www.kaggle.com/rajathmc/cornell-moviedialog-corpus)
