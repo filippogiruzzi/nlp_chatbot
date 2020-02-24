@@ -6,6 +6,7 @@ from copy import deepcopy
 from tqdm import tqdm
 import tensorflow as tf
 import numpy as np
+import json
 
 from nlp.data_processing.data_processor import DataProcessor
 from nlp.data_processing.data_loader import DataLoader
@@ -112,8 +113,14 @@ def create_tfrecords(data_dir,
     data_processor = DataProcessor(data_dir, max_len=max_len)
     voc, pairs = data_processor.load_prepare_data()
     pairs = data_processor.trim_rare_words(voc, pairs)
-
     data_loader = DataLoader(voc, pairs, max_len=max_len, split=split)
+
+    voc_data = {'index2word': voc.index2word, 'word2index': voc.word2index, 'word2count': voc.word2count}
+    voc_fp = os.path.join(output_path, 'voc.json')
+    with open(voc_fp, 'w') as f:
+        print('\nDumped vocabulary data')
+        json.dump(voc_data, f)
+
     train, val, test = data_loader.get_split()
 
     train_it = data_loader.data_iter(pairs=train)

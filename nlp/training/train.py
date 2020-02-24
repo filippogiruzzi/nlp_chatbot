@@ -7,6 +7,7 @@ from datetime import datetime
 
 import numpy as np
 import tensorflow as tf
+import json
 
 from nlp.training.input_pipeline import data_input_fn
 from nlp.training.estimator import Seq2SeqEstimator
@@ -129,16 +130,26 @@ def main():
                                       shuffle=False,
                                       fake_input=args.fake_input)
 
+        voc_fp = os.path.join(args.data_dir, 'voc.json')
+        with open(voc_fp, 'r') as f:
+            voc_data = json.load(f)
+
         predictions = estimator.predict(input_fn=test_input_fn)
         for n, pred in enumerate(predictions):
-            input_sentence = pred['input_sentence']
-            input_target = pred['input_target']
-            pred = pred['answer']
+            input_sentence = np.int64(pred['input_sentence'])
+            input_target = np.int64(pred['input_target'])
+            pred = np.int64(np.argmax(pred['answer'], axis=-1))
+
+            input_sentence_words = [voc_data['index2word'][str(x)] for x in input_sentence]
+            input_target_words = [voc_data['index2word'][str(x)] for x in input_target]
+            pred_words = [voc_data['index2word'][str(x)] for x in pred]
 
             print("\nInputs:")
-            print(np.int64(input_sentence), np.int64(input_target))
+            print(input_sentence, input_target)
+            print(input_sentence_words, input_target_words)
             print("Prediction:")
-            print(np.argmax(pred, axis=-1))
+            print(pred)
+            print(pred_words)
 
 
 if __name__ == '__main__':
