@@ -86,6 +86,7 @@ $ python3 training/train.py --data-dir /path/to/cornell_movie_data/tfrecords/
 ## 6. Todo
 
 * [ ] Full training on Colab
+* [ ] Add attention
 * [ ] Debug training accuracy
 * [ ] Inference model & script
 * [ ] Chatbot interface

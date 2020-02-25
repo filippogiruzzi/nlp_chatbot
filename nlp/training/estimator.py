@@ -22,11 +22,12 @@ class Seq2SeqEstimator(object):
         label = labels['label']
         one_hot_label = labels['one_hot_label']
 
-        loss_mask = tf.expand_dims(label, axis=-1) > 0
+        # loss_mask = tf.expand_dims(label, axis=-1) > 0
         losses = tf.nn.softmax_cross_entropy_with_logits_v2(labels=one_hot_label, logits=pred)
-        losses = tf.expand_dims(losses, axis=-1)
-        masked_losses = tf.squeeze(tf.where(loss_mask, losses, tf.zeros_like(losses)), axis=-1)
-        loss = tf.reduce_sum(masked_losses) / params['batch_size']
+        # losses = tf.expand_dims(losses, axis=-1)
+        # masked_losses = tf.squeeze(tf.where(loss_mask, losses, tf.zeros_like(losses)), axis=-1)
+        # loss = tf.reduce_sum(masked_losses) / params['batch_size']
+        loss = tf.reduce_sum(losses) / params['batch_size']
         tf.summary.scalar('loss', tensor=loss)
         return loss
 
