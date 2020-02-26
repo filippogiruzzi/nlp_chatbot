@@ -28,7 +28,6 @@ class Seq2SeqEstimator(object):
         elif params['loss'] == 'masked':
             label = labels['label']
             loss_mask = tf.expand_dims(label, axis=-1) > 0
-            print(label.get_shape().as_list(), loss_mask.get_shape().as_list())
             losses = tf.nn.softmax_cross_entropy_with_logits_v2(labels=one_hot_label, logits=pred)
             losses = tf.expand_dims(losses, axis=-1)
             masked_losses = tf.squeeze(tf.where(loss_mask, losses, tf.zeros_like(losses)), axis=-1)
@@ -64,10 +63,7 @@ class Seq2SeqEstimator(object):
             loss = self.loss_fn(labels, predictions, params)
             train_op = tf.contrib.training.create_train_op(loss, optimizer, global_step=tf.train.get_global_step())
 
-            # pred_val = tf.one_hot(tf.argmax(tf.nn.softmax(predictions['answer']), -1), params['voc_size'])
-            # acc = tf.metrics.accuracy(labels=labels['one_hot_label'], predictions=pred_val)
             acc = self.accuracy_fn(labels, predictions, params)
-            # tf.summary.scalar('acc', tensor=acc[1], family='accuracy')
             tf.summary.scalar('acc', tensor=acc, family='accuracy')
             return tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
 
@@ -76,13 +72,13 @@ class Seq2SeqEstimator(object):
             predictions = {'answer': preds}
             # pred_val = tf.one_hot(tf.argmax(tf.nn.softmax(predictions['answer']), -1), params['voc_size'])
             # acc = tf.metrics.accuracy(labels=labels['one_hot_label'], predictions=pred_val)
-            acc = self.accuracy_fn(labels, predictions, params)
-            metrics = {
-                'accuracy/accuracy/acc': acc
-            }
+            # metrics = {
+            #     'accuracy/accuracy/acc': acc
+            # }
 
             loss = self.loss_fn(labels, predictions, params)
-            return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=metrics)
+            # return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=metrics)
+            return tf.estimator.EstimatorSpec(mode=mode, loss=loss)
 
         # Prediction op
         if mode == tf.estimator.ModeKeys.PREDICT:
