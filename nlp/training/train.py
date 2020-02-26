@@ -17,21 +17,23 @@ def main():
     parser = argparse.ArgumentParser(description='train the NLP model')
     parser.add_argument('--data-dir', '-d', type=str, default='/home/filippo/datasets/cornell_movie_data/tfrecords/',
                         help='tf records data directory')
-    parser.add_argument('--model-dir', type=str, default='', help='pretrained model directory')
-    parser.add_argument('--ckpt', type=str, default='', help='pretrained checkpoint directory')
+    parser.add_argument('--model-dir', '-md', type=str, default='', help='pretrained model directory')
+    parser.add_argument('--ckpt', '-c', type=str, default='', help='pretrained checkpoint directory')
     parser.add_argument('--mode', '-m', type=str, default='train', help='train, eval or predict')
-    parser.add_argument('--model', type=str, default='seq2seq', help='model name')
+    parser.add_argument('--model', '-mo', type=str, default='seq2seq', help='model name')
     parser.add_argument('--batch-size', '-bs', type=int, default=64, help='batch size')
     parser.add_argument('--epochs', '-e', type=int, default=100, help='train epochs')
     parser.add_argument('--learning-rate', '-lr', type=float, default=0.0001, help='initial learning rate')
-    parser.add_argument('--max-len', type=int, default=10, help='max sentence length')
-    parser.add_argument('--voc-size', type=int, default=7826, help='vocabulary size')
-    parser.add_argument('--loss', type=str, default='regular', help='regular loss or masked loss')
+    parser.add_argument('--max-len', '-ml', type=int, default=10, help='max sentence length')
+    parser.add_argument('--voc-size', '-vs', type=int, default=7826, help='vocabulary size')
+    parser.add_argument('--loss', '-l', type=str, default='regular', help='regular loss or masked loss')
+    parser.add_argument('--optimizer', '-o', type=str, default='rmsprop', help='rmsprop or adam optimizer')
     parser.add_argument('--fake-input', action='store_true', default=False, help='debug with 1 batch training')
     args = parser.parse_args()
 
     assert args.model in ['seq2seq'], 'Wrong model name'
     assert args.loss in ['regular', 'masked'], 'Wrong loss name'
+    assert args.optimizer in ['rmsprop', 'adam'], 'Wrong optimizer name'
 
     tfrecords_train = glob.glob('{}train/*.tfrecord'.format(args.data_dir))
     tfrecords_val = glob.glob('{}val/*.tfrecord'.format(args.data_dir))
