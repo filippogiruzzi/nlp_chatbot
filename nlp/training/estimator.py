@@ -56,7 +56,10 @@ class Seq2SeqEstimator(object):
 
         # Training op
         if mode == tf.estimator.ModeKeys.TRAIN:
-            optimizer = tf.train.RMSPropOptimizer(learning_rate=params['lr'])
+            if params['optimizer'] == 'rmsprop':
+                optimizer = tf.train.RMSPropOptimizer(learning_rate=params['lr'])
+            elif params['optimizer'] == 'adam':
+                optimizer = tf.train.AdamOptimizer(learning_rate=params['lr'])
 
             predictions = {'answer': preds}
             loss = self.loss_fn(labels, predictions, params)

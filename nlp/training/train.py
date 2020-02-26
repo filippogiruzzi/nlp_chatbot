@@ -57,9 +57,9 @@ def main():
         'lr': args.learning_rate,
         'max_len': args.max_len,
         'voc_size': args.voc_size,
-        'emb_dim': 128,
-        'enc_dim': 64,
-        'dec_dim': 64,
+        'emb_dim': 256,
+        'enc_dim': 128,
+        'dec_dim': 128,
         'loss': args.loss
     }
 
