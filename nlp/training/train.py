@@ -23,13 +23,15 @@ def main():
     parser.add_argument('--model', type=str, default='seq2seq', help='model name')
     parser.add_argument('--batch-size', '-bs', type=int, default=64, help='batch size')
     parser.add_argument('--epochs', '-e', type=int, default=100, help='train epochs')
-    parser.add_argument('--learning-rate', '-lr', type=float, default=0.001, help='initial learning rate')
+    parser.add_argument('--learning-rate', '-lr', type=float, default=0.0001, help='initial learning rate')
     parser.add_argument('--max-len', type=int, default=10, help='max sentence length')
     parser.add_argument('--voc-size', type=int, default=7826, help='vocabulary size')
+    parser.add_argument('--loss', type=str, default='regular', help='regular loss or masked loss')
     parser.add_argument('--fake-input', action='store_true', default=False, help='debug with 1 batch training')
     args = parser.parse_args()
 
     assert args.model in ['seq2seq'], 'Wrong model name'
+    assert args.loss in ['regular', 'masked'], 'Wrong loss name'
 
     tfrecords_train = glob.glob('{}train/*.tfrecord'.format(args.data_dir))
     tfrecords_val = glob.glob('{}val/*.tfrecord'.format(args.data_dir))
@@ -55,9 +57,10 @@ def main():
         'lr': args.learning_rate,
         'max_len': args.max_len,
         'voc_size': args.voc_size,
-        'emb_dim': 512,
-        'enc_dim': 256,
-        'dec_dim': 256
+        'emb_dim': 128,
+        'enc_dim': 64,
+        'dec_dim': 64,
+        'loss': args.loss
     }
 
     train_config = tf.estimator.RunConfig(save_summary_steps=10,
