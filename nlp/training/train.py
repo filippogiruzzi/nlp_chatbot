@@ -31,7 +31,7 @@ def main():
     parser.add_argument('--fake-input', action='store_true', default=False, help='debug with 1 batch training')
     args = parser.parse_args()
 
-    assert args.model in ['seq2seq'], 'Wrong model name'
+    assert args.model in ['seq2seq', 'attn'], 'Wrong model name'
     assert args.loss in ['regular', 'masked'], 'Wrong loss name'
     assert args.optimizer in ['rmsprop', 'adam'], 'Wrong optimizer name'
 

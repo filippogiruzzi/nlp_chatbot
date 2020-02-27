@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-from nlp.training.model import Seq2Seq
+from nlp.training.model import Seq2Seq, Seq2SeqAttn
 
 
 class Seq2SeqEstimator(object):
@@ -10,6 +10,8 @@ class Seq2SeqEstimator(object):
     def _instantiate_model(self, params, training=False):
         if params['model'] == 'seq2seq':
             self.model = Seq2Seq(params=params, is_training=training)
+        elif params['model'] == 'attn':
+            self.model = Seq2SeqAttn(params=params, is_training=training)
 
     def _output_network(self, features, params, training=False):
         self._instantiate_model(params=params, training=training)
