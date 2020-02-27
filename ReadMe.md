@@ -110,6 +110,7 @@ The exported model will be recorded inside this directory.
 * [ ] Add evaluation accuracy
 * [x] Inference model & script
 * [x] Chatbot interface
+* [ ] Clean OOP inference
 
 ## 7. Resources
 
@@ -127,10 +128,10 @@ O. Vinyals, Q. Le, 2015,
 [ Arxiv ](https://arxiv.org/abs/1506.05869)
 * _Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation_, 
 K. Cho, B. van Merrienboer, C. Gulcehre, D. Bahdanau, F. Bougares, H. Schwenk, Y. Bengio, 2014, 
-[ Arxiv ](https://arxiv.org/abs/1406.1078),
+[ Arxiv ](https://arxiv.org/abs/1406.1078)
 * _Effective Approaches to Attention-based Neural Machine Translation_, 
 M-T. Luong, H. Pham, C. D. Manning, 2015, 
-[ Arxiv ](https://arxiv.org/abs/1508.04025),
+[ Arxiv ](https://arxiv.org/abs/1508.04025)
 * _Neural Machine Translation by Jointly Learning to Align and Translate_, 
 D. Bahdanau, K. Cho, Y. Bengio, 2014, 
 [ Arxiv ](https://arxiv.org/abs/1409.0473)

@@ -75,14 +75,7 @@ class Seq2SeqEstimator(object):
         # Evaluation op
         if mode == tf.estimator.ModeKeys.EVAL:
             predictions = {'answer': preds}
-            # pred_val = tf.one_hot(tf.argmax(tf.nn.softmax(predictions['answer']), -1), params['voc_size'])
-            # acc = tf.metrics.accuracy(labels=labels['one_hot_label'], predictions=pred_val)
-            # metrics = {
-            #     'accuracy/accuracy/acc': acc
-            # }
-
             loss = self.loss_fn(labels, predictions, params)
-            # return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=metrics)
             return tf.estimator.EstimatorSpec(mode=mode, loss=loss)
 
         # Prediction op
