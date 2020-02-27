@@ -62,7 +62,8 @@ def main():
         'emb_dim': 256,
         'enc_dim': 128,
         'dec_dim': 128,
-        'loss': args.loss
+        'loss': args.loss,
+        'optimizer': args.optimizer
     }
 
     train_config = tf.estimator.RunConfig(save_summary_steps=10,
