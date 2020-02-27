@@ -12,6 +12,10 @@ Natural Language Processing, Chatbot, Movie Dialogues
 3. [ Project structure ](#3-project-structure)
 4. [ Dataset ](#4-dataset)
 5. [ Project usage ](#5-project-usage)  
+    5.1 [ Reformat the raw data .txt files ](#51-reformat-the-raw-data-txt-files)  
+    5.2 [ Train the NLP Seq2Seq model ](#52-train-the-nlp-seq2seq-model)  
+    5.3 [ Visualize predictions with trained model ](#53-visualize-predictions-with-trained-model)  
+    5.4 [ Chat with the Chatbot AI ](#54-chat-with-the-chatbot-ai)
 6. [ Todo ](#6-todo)
 7. [ Resources ](#7-resources)
 
@@ -38,6 +42,8 @@ The purpose of this project is to design and implement
 a realistic Chatbot based on Natural Language Processing (NLP).
 
 ### 2.2 Results
+
+![alt text](pics/chat.png "Chatting with the AI")
 
 ## 3. Project structure
 
@@ -83,13 +89,26 @@ $ python3 training/train.py --data-dir /path/to/cornell_movie_data/tfrecords/
                             --ckpt /path/to/trained/model/dir/
 ```
 
+### 5.4 Chat with the Chatbot AI
+
+```
+$ python3 inference/export_model.py --model-dir /path/to/trained/model/dir/
+                                    --ckpt /path/to/trained/model/dir/
+$ python3 inference/inference.py --data_dir /path/to/cornell_movie_data/
+                                 --exported_model /path/to/exported/model/
+```
+
+The trained model will be recorded in `/path/to/cornell_movie_data/tfrecords/models/seq2seq/`. 
+The exported model will be recorded inside this directory.
+
 ## 6. Todo
 
 * [ ] Full training on Colab
 * [ ] Add attention
-* [ ] Debug training accuracy
-* [ ] Inference model & script
-* [ ] Chatbot interface
+* [x] Debug training accuracy
+* [ ] Add evaluation accuracy
+* [x] Inference model & script
+* [x] Chatbot interface
 
 ## 7. Resources
 

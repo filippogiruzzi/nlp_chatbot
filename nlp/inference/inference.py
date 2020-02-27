@@ -1,11 +1,9 @@
 import os
 from absl import flags, app
-import time
 
 import numpy as np
 import tensorflow as tf
 import json
-from collections import deque
 
 
 flags.DEFINE_string('data_dir',
