@@ -103,8 +103,9 @@ The exported model will be recorded inside this directory.
 
 ## 6. Todo
 
-* [ ] Full training on Colab
-* [ ] Add attention
+* [x] Full training on Colab
+* [ ] Add Google Colab demo
+* [x] Add attention
 * [x] Debug training accuracy
 * [ ] Add evaluation accuracy
 * [x] Inference model & script
@@ -118,3 +119,18 @@ This project was widely inspired by:
 * _TensorFlow NLP tutorial_, [ TensorFlow website ](https://www.tensorflow.org/tutorials/text/text_generation)
 * _Keras NLP tutorial_, [ TDS ](https://towardsdatascience.com/how-to-implement-seq2seq-lstm-model-in-keras-shortcutnlp-6f355f3e5639)
 * _Kaggle challenge_, [ Kaggle ](https://www.kaggle.com/rajathmc/cornell-moviedialog-corpus)
+* _Sequence to Sequence Learning with Neural Networks_, 
+I. Sutskever, O. Vinyals, Q. V. Le, 2014, 
+[ Arxiv ](https://arxiv.org/abs/1409.3215)
+* _A Neural Conversational Model_, 
+O. Vinyals, Q. Le, 2015, 
+[ Arxiv ](https://arxiv.org/abs/1506.05869)
+* _Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation_, 
+K. Cho, B. van Merrienboer, C. Gulcehre, D. Bahdanau, F. Bougares, H. Schwenk, Y. Bengio, 2014, 
+[ Arxiv ](https://arxiv.org/abs/1406.1078),
+* _Effective Approaches to Attention-based Neural Machine Translation_, 
+M-T. Luong, H. Pham, C. D. Manning, 2015, 
+[ Arxiv ](https://arxiv.org/abs/1508.04025),
+* _Neural Machine Translation by Jointly Learning to Align and Translate_, 
+D. Bahdanau, K. Cho, Y. Bengio, 2014, 
+[ Arxiv ](https://arxiv.org/abs/1409.0473)
