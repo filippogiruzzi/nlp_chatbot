@@ -16,7 +16,7 @@ def main():
     parser.add_argument('--voc-size', '-vs', type=int, default=7826, help='vocabulary size')
     args = parser.parse_args()
 
-    assert args.model in ['seq2seq'], 'Wrong model name'
+    assert args.model in ['seq2seq', 'attn'], 'Wrong model name'
 
     logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
     logger = logging.getLogger(__name__)

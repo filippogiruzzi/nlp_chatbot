@@ -111,6 +111,12 @@ The exported model will be recorded inside this directory.
 * [x] Inference model & script
 * [x] Chatbot interface
 * [ ] Clean OOP inference
+* [ ] Add architecture on ReadMe
+* [ ] Add Beam search decoding
+* [ ] Add complex models
+* [ ] Add & compare with statistical baseline
+* [ ] Add perplexity
+* [ ] Visualize attention
 
 ## 7. Resources
 
