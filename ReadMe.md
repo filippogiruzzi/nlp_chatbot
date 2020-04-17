@@ -112,11 +112,15 @@ The exported model will be recorded inside this directory.
 * [x] Chatbot interface
 * [ ] Clean OOP inference
 * [ ] Add architecture on ReadMe
-* [ ] Add Beam search decoding
+* [ ] Add Beam search decoding & random sampling decoding
+* [ ] Add Softmax temperature
 * [ ] Add complex models
 * [ ] Add & compare with statistical baseline
 * [ ] Add perplexity
 * [ ] Visualize attention
+* [ ] Add char level model
+* [ ] Add BPE (Byte Pair Encoding)
+* [ ] Train on maximizing MMI (Maximum Mutual Information)
 
 ## 7. Resources
 
